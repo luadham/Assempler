@@ -1,0 +1,14 @@
+copy start 0000
+first stl retadr
+-   ldb #length
+- base length
+cloop +jsub rdrec
+-   lda length
+- comp #0
+-   jeq endfile
+-   +jsub   wrrec
+- j cloop
+endfil  lda eof
+eof byte c'eof'
+adham word 1
+adel word 2

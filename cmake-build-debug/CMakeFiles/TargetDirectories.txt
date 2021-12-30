@@ -1,0 +1,3 @@
+/home/adham/Desktop/SysProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/adham/Desktop/SysProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/adham/Desktop/SysProject/cmake-build-debug/CMakeFiles/SysProject.dir

@@ -1,0 +1,7 @@
+Loc Counter	Variable
+0		first
+6		cloop
+1a		endfil
+1d		eof
+1e		adham
+21		adel
