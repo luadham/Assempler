@@ -8,7 +8,7 @@
 #include "Line.h"
 #include "SymbolTableLine.h"
 #include "Calculator.h"
-#include "../Formats/headers/FormatThree.h"
+#include "../Formats/headers/FormatFour.h"
 class PassTwo {
 private:
     Calculator calculator;
@@ -21,9 +21,9 @@ private:
         return "";
     }
     void generateObjCodes() {
-        FormatThree f;
-        cout << f.generateObjCode("17", 0, 0, 1, "2d");
-        // 17202d
+        FormatFour f;
+        cout << f.generateObjCode("75", 0, 0, 0, "1000");
+
     }
 public:
     PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable);

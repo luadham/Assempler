@@ -1,5 +1,5 @@
 //
-// Created by adham on ٣٠‏/١٢‏/٢٠٢١.
+// Created by adham
 //
 
 #ifndef SYSPROJECT_FORMATONE_H
@@ -16,4 +16,4 @@ public:
 };
 
 
-#endif //SYSPROJECT_FORMATONE_H
+#endif
