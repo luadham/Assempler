@@ -53,3 +53,16 @@ int Calculator::to_int(string number) {
     }
     return res;
 }
+
+int Calculator::fromBinaryToDecimal(string binary) {
+    int number = 0;
+    for (int i = binary.size() - 1; i >= 0; i--) {
+        if (binary[i] == '1')
+            number += pow(BIN_BASE, binary.size() - i - 1);
+    }
+    return number;
+}
+
+string Calculator::formBinaryToHex(string binary) {
+    return fromDecToHex(fromBinaryToDecimal(binary));
+}

@@ -23,12 +23,6 @@ int SicXeInstructions::getInstructionFormat(string name) {
 }
 
 
-int SicXeInstructions::getInstructionType(string operand) {
-    if (operand[0] == '@') return 2;
-    else if (operand[0] == '#') return 1;
-    return 3;
-}
-
 bool SicXeInstructions::isIndexed(string operand) {
     for (int i = 0; i < operand.size(); i++) {
         if (operand[i] == ',') return true;

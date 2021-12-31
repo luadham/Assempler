@@ -5,11 +5,12 @@
 #ifndef SYSPROJECT_SYMBOLTABLELINE_H
 #define SYSPROJECT_SYMBOLTABLELINE_H
 #include <bits/stdc++.h>
+#include "Line.h"
 using namespace std;
 class SymbolTableLine {
 public:
     string locationLine;
-    string label;
+    Line codeLine;
 };
 
 

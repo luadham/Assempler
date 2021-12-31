@@ -6,20 +6,15 @@
 #define SYSPROJECT_PASSONE_H
 #include <bits/stdc++.h>
 #include "InputParser.h"
-
+#include "SymbolTableLine.h"
 class PassOne {
 private:
-    struct LocationLine {
-        string locCounter;
-        Line codeLine;
-    };
-
     string outFile;
     string symbolTableFile;
     int locationCounter;
     Calculator calculator;
     vector<Line> lines;
-    vector<LocationLine> symbolTable;
+    vector<SymbolTableLine> symbolTable;
 
     void incrementLocationCounter(Line line);
     int getMemorySize(Line line);
@@ -27,8 +22,12 @@ private:
     void writeOut();
     void generateSymbolTable();
 
+
+
 public:
     PassOne(vector<Line> input, int startLocation);
+    vector<SymbolTableLine> getSymbolTable();
+
 
 };
 

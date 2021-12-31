@@ -37,6 +37,19 @@ private:
         return false;
     }
 
+    Instruction getInstructionData(string instructionName) {
+        Instruction instruction;
+        instruction.name = instructionName;
+        for (int i = 0; i < instructions.size(); i++) {
+            if (instructionName == instructions[i].name) {
+                instruction.opCode = instructions[i].opCode;
+                instruction.format = instructions[i].format;
+                return instruction;
+            }
+        }
+        return instruction;
+    }
+
     bool validLine(Line line) {
         char firstDigit = line.instruction.name[0];
         if (firstDigit == '+' || firstDigit == '$' || firstDigit == '&') return true;
@@ -66,6 +79,8 @@ private:
             line.label = convertToLower(word);
             file >> word;
             line.instruction.name = convertToLower(word);
+            line.instruction.format;
+            line.instruction.opCode;
             file >> word;
             line.operand = convertToLower(word);
             if (line.instruction.name == "start") {

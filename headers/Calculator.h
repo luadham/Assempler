@@ -15,6 +15,7 @@ class Calculator {
 private:
     map<char, int> hexChar;
     const int HEX_BASE = 16;
+    const int BIN_BASE = 2;
     void initHexChar() {
         hexChar.insert(make_pair('a', 10));
         hexChar.insert(make_pair('b', 11));
@@ -27,6 +28,8 @@ public:
     Calculator();
     int fromHexToDecimal(string hex);
     string fromDecToHex(int number);
+    int fromBinaryToDecimal(string binary);
+    string formBinaryToHex(string binary);
     int to_int(string number);
 };
 

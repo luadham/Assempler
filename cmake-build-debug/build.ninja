@@ -156,6 +156,12 @@ build CMakeFiles/SysProject.dir/SymbolTableLine.cpp.o: CXX_COMPILER__SysProject_
   OBJECT_DIR = CMakeFiles/SysProject.dir
   OBJECT_FILE_DIR = CMakeFiles/SysProject.dir
 
+build CMakeFiles/SysProject.dir/PassTwo.cpp.o: CXX_COMPILER__SysProject_Debug /home/adham/Desktop/SysProject/PassTwo.cpp || cmake_object_order_depends_target_SysProject
+  DEP_FILE = CMakeFiles/SysProject.dir/PassTwo.cpp.o.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/SysProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/SysProject.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target SysProject
@@ -164,7 +170,7 @@ build CMakeFiles/SysProject.dir/SymbolTableLine.cpp.o: CXX_COMPILER__SysProject_
 #############################################
 # Link the executable SysProject
 
-build SysProject: CXX_EXECUTABLE_LINKER__SysProject_Debug CMakeFiles/SysProject.dir/main.cpp.o CMakeFiles/SysProject.dir/Calculator.cpp.o CMakeFiles/SysProject.dir/InputParser.cpp.o CMakeFiles/SysProject.dir/Line.cpp.o CMakeFiles/SysProject.dir/Instruction.cpp.o CMakeFiles/SysProject.dir/SicXeInstructions.cpp.o CMakeFiles/SysProject.dir/Formats/FormatOne.cpp.o CMakeFiles/SysProject.dir/Formats/FormatTwo.cpp.o CMakeFiles/SysProject.dir/Formats/FormatThree.cpp.o CMakeFiles/SysProject.dir/Formats/FormatFour.cpp.o CMakeFiles/SysProject.dir/Formats/FormatFive.cpp.o CMakeFiles/SysProject.dir/Formats/FormatSix.cpp.o CMakeFiles/SysProject.dir/PassOne.cpp.o CMakeFiles/SysProject.dir/SymbolTableLine.cpp.o
+build SysProject: CXX_EXECUTABLE_LINKER__SysProject_Debug CMakeFiles/SysProject.dir/main.cpp.o CMakeFiles/SysProject.dir/Calculator.cpp.o CMakeFiles/SysProject.dir/InputParser.cpp.o CMakeFiles/SysProject.dir/Line.cpp.o CMakeFiles/SysProject.dir/Instruction.cpp.o CMakeFiles/SysProject.dir/SicXeInstructions.cpp.o CMakeFiles/SysProject.dir/Formats/FormatOne.cpp.o CMakeFiles/SysProject.dir/Formats/FormatTwo.cpp.o CMakeFiles/SysProject.dir/Formats/FormatThree.cpp.o CMakeFiles/SysProject.dir/Formats/FormatFour.cpp.o CMakeFiles/SysProject.dir/Formats/FormatFive.cpp.o CMakeFiles/SysProject.dir/Formats/FormatSix.cpp.o CMakeFiles/SysProject.dir/PassOne.cpp.o CMakeFiles/SysProject.dir/SymbolTableLine.cpp.o CMakeFiles/SysProject.dir/PassTwo.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/SysProject.dir
   POST_BUILD = :

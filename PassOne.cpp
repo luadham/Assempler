@@ -48,9 +48,9 @@ int PassOne::getMemorySize(Line line) {
 }
 
 void PassOne::generateLocationCounter() {
-    LocationLine locationLine;
+    SymbolTableLine locationLine;
     for (int i = 0; i < this->lines.size(); i++) {
-        locationLine.locCounter = calculator.fromDecToHex(this->locationCounter);
+        locationLine.locationLine = calculator.fromDecToHex(this->locationCounter);
         locationLine.codeLine = lines[i];
         this->symbolTable.push_back(locationLine);
         incrementLocationCounter(lines[i]);
@@ -62,7 +62,7 @@ void PassOne::writeOut() {
     file.open(outFile);
     file << "Location Counter\n";
     for (int i = 0; i < symbolTable.size(); i++) {
-        file << symbolTable[i].locCounter << "  " << symbolTable[i].codeLine.label << "  ";
+        file << symbolTable[i].locationLine << "  " << symbolTable[i].codeLine.label << "  ";
         file << symbolTable[i].codeLine.instruction.name << "  " << symbolTable[i].codeLine.operand << endl;
     }
     file.close();
@@ -79,12 +79,16 @@ void PassOne::generateSymbolTable() {
         if (symbolTable[i].codeLine.label == "-")
             continue;
         else {
-            cout << symbolTable[i].locCounter << "\t\t" << symbolTable[i].codeLine.label << endl;
-            file << symbolTable[i].locCounter << "\t\t" << symbolTable[i].codeLine.label << endl;
+            cout << symbolTable[i].locationLine << "\t\t" << symbolTable[i].codeLine.label << endl;
+            file << symbolTable[i].locationLine << "\t\t" << symbolTable[i].codeLine.label << endl;
         }
     }
     file.close();
     cout << "-----------------------\n";
+}
+
+vector<SymbolTableLine> PassOne::getSymbolTable() {
+    return this->symbolTable;
 }
 
 

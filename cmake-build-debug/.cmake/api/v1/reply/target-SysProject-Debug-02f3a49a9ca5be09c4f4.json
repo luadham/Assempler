@@ -65,7 +65,8 @@
 				19,
 				21,
 				23,
-				25
+				25,
+				27
 			]
 		}
 	],
@@ -111,7 +112,8 @@
 				19,
 				21,
 				23,
-				25
+				25,
+				27
 			]
 		},
 		{
@@ -130,7 +132,8 @@
 				20,
 				22,
 				24,
-				26
+				26,
+				28
 			]
 		}
 	],
@@ -205,7 +208,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Formats/FormatOne.h",
+			"path" : "Formats/headers/FormatOne.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -216,7 +219,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Formats/FormatTwo.h",
+			"path" : "Formats/headers/FormatTwo.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -227,7 +230,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Formats/FormatThree.h",
+			"path" : "Formats/headers/FormatThree.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -238,7 +241,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Formats/FormatFour.h",
+			"path" : "Formats/headers/FormatFour.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -249,7 +252,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Formats/FormatFive.h",
+			"path" : "Formats/headers/FormatFive.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -260,7 +263,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Formats/FormatSix.h",
+			"path" : "Formats/headers/FormatSix.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -283,6 +286,17 @@
 		{
 			"backtrace" : 1,
 			"path" : "headers/SymbolTableLine.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "PassTwo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "headers/PassTwo.h",
 			"sourceGroupIndex" : 1
 		}
 	],

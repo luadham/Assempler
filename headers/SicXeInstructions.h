@@ -42,13 +42,6 @@ public:
     */
     vector<Instruction> getInstructions();
 
-    /*
-        get type of operand imm, indirect, simple
-        @return 1 if Immidate SicXe
-        @return 2 if Indirect SicXe
-        @return 3 if Simple SicXe
-    */
-    int getInstructionType(string operand);
 
     /*
         check if the operand is indexed or not
