@@ -12,7 +12,6 @@ private:
     string outFile;
     string symbolTableFile;
     int locationCounter;
-    Calculator calculator;
     vector<Line> lines;
     vector<SymbolTableLine> symbolTable;
 

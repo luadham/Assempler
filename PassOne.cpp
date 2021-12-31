@@ -34,9 +34,9 @@ int PassOne::getMemorySize(Line line) {
     } else if (line.instruction.name == "base") {
         return 0;
     } else if (line.instruction.name == "resw") {
-        return 3 * calculator.to_int(line.operand);
+        return 3 * Calculator::to_int(line.operand);
     } else if (line.instruction.name == "resb") {
-        return calculator.to_int(line.operand);
+        return Calculator::to_int(line.operand);
     } else if (line.instruction.name == "word") {
         return 3;
     } else if (line.instruction.name == "byte") {
@@ -50,7 +50,7 @@ int PassOne::getMemorySize(Line line) {
 void PassOne::generateLocationCounter() {
     SymbolTableLine locationLine;
     for (int i = 0; i < this->lines.size(); i++) {
-        locationLine.locationLine = calculator.fromDecToHex(this->locationCounter);
+        locationLine.locationLine = Calculator::fromDecToHex(this->locationCounter);
         locationLine.codeLine = lines[i];
         this->symbolTable.push_back(locationLine);
         incrementLocationCounter(lines[i]);

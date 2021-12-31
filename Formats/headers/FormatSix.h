@@ -9,15 +9,17 @@
 using namespace std;
 
 class FormatSix {
+private:
+    Calculator calculator;
 public:
     FormatSix();
     string generateObjCode(string opCode, int x, string address, string base) {
         string res = "";
         res += opCode;
-        int addrs = Calculator::fromHexToDecimal(address);
+        int addrs = calculator.fromHexToDecimal(address);
         int f4 = !(addrs & 1);
         int f5 = addrs != 0;
-        int f6 = addrs != Calculator::fromHexToDecimal(base);
+        int f6 = addrs != calculator.fromHexToDecimal(base);
         string flags = "";
         flags.append(to_string(x)).append(to_string(f4))
             .append(to_string(f5)).append(to_string(f6));

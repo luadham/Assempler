@@ -14,7 +14,7 @@ using namespace std;
 class Calculator {
 private:
     map<char, int> hexChar;
-    const int HEX_BASE = 16;
+    static const int HEX_BASE = 16;
     static const int BIN_BASE = 2;
     void initHexChar() {
         hexChar.insert(make_pair('a', 10));
@@ -24,7 +24,6 @@ private:
         hexChar.insert(make_pair('e', 14));
         hexChar.insert(make_pair('f', 15));
     }
-
     static int onesComplement(int number) {
         return number ^ keyConverter(numberOfBits(number));
     }
@@ -34,7 +33,7 @@ public:
     /*
      * convert from hex to decimal
      */
-    static int fromHexToDecimal(string hex);
+    int fromHexToDecimal(string hex);
     /*
      * Convert from decimal to hex
      */

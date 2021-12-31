@@ -25,11 +25,6 @@ int Calculator::fromHexToDecimal(string hex) {
 string Calculator::fromDecToHex(int number) {
     if (number == 0) {
         return "0";
-    } else if (isNegative(number)) {
-        string res = "";
-        res += "FF";
-        res += to_string(twosComplement(-number));
-        return res;
     }
     string temp = "";
     while (number) {

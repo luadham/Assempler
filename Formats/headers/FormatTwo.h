@@ -1,5 +1,5 @@
 //
-// Created by adham 
+// Created by adham
 //
 
 #ifndef SYSPROJECT_FORMATTWO_H

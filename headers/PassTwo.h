@@ -11,9 +11,9 @@
 #include "../Formats/headers/FormatFour.h"
 class PassTwo {
 private:
-    Calculator calculator;
     vector<Line> input;
     vector<SymbolTableLine> symbolTable;
+    Calculator calculator;
     string getOperandLocation(string operand) {
         for (auto i : symbolTable) {
             if (operand == i.codeLine.operand) return i.locationLine;
@@ -61,7 +61,7 @@ public:
     string displacement(string nextLocation, string operand) {
         int operandAddress = calculator.fromHexToDecimal(getOperandLocation(operand));
         int pcNext = calculator.fromHexToDecimal(nextLocation);
-        return calculator.fromDecToHex(operandAddress - pcNext);
+        return Calculator::fromDecToHex(operandAddress - pcNext);
     }
 
 
