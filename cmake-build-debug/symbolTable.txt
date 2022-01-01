@@ -1,6 +1,10 @@
 Loc Counter	Variable
 0		copy
-0		prog
-3		cloop
-b		retadr
-e		length
+1000		first
+1003		cloop
+1026		rdrec
+102c		three
+102f		zero
+1032		retadr
+1bea		length
+1bed		buffer

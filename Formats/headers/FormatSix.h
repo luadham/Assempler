@@ -19,7 +19,7 @@ public:
         string res = "";
         res += opCode;
         int addrs = calculator.fromHexToDecimal(address);
-        int f4 = !(addrs & 1);
+        int f4 = (addrs & 1)? 1 : 0;
         int f5 = addrs != 0;
         int f6 = addrs != calculator.fromHexToDecimal(base);
         string flags = "";

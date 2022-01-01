@@ -1,0 +1,16 @@
+0 copy start 1000 4b101026
+1000 first stl retadr 370102f
+1003 cloop +jsub rdrec 2b2021
+1007 - $lda zero 32201e
+100b - comp zero 48201b
+100e - &jeq zero 3f301032
+1011 - &jsub zero f101bed
+1014 - $j retadr 3200d
+1018 - +sta buffer f101bea
+101c - lda three 4b2009
+101f - +sta length 32003
+1023 - jsub zero f8
+1026 rdrec lda three B400
+1029 - tio - 3
+102a - clear - 0
+102c three word 3 102c three word 3 

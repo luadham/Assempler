@@ -5,12 +5,11 @@
 #include "headers/PassOne.h"
 
 PassOne::PassOne(vector<Line> input, int startLocation) {
-    outFile = "../out.txt";
+
     symbolTableFile = "symbolTable.txt";
     locationCounter = startLocation;
     this->lines = input;
     generateLocationCounter();
-    writeOut();
     generateSymbolTable();
 }
 
@@ -76,14 +75,7 @@ void PassOne::generateLocationCounter() {
 }
 
 void PassOne::writeOut() {
-    ofstream file;
-    file.open(outFile);
-    file << "Location Counter\n";
-    for (int i = 0; i < symbolTable.size(); i++) {
-        file << symbolTable[i].locationLine << "  " << symbolTable[i].codeLine.label << "  ";
-        file << symbolTable[i].codeLine.instruction.name << "  " << symbolTable[i].codeLine.operand << endl;
-    }
-    file.close();
+
 }
 
 void PassOne::generateSymbolTable() {

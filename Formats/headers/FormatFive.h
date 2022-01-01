@@ -19,12 +19,11 @@ public:
         int obCodeDecimal = calc.fromHexToDecimal(obCode);
         string res = "";
         string flags = "";
-        int f1 = !(calc.fromHexToDecimal(disp) & 1);
+        int f1 = (calc.fromHexToDecimal(disp) & 1)? 0 : 1;
         int f3 = calc.fromHexToDecimal(disp) == 0;
         flags.append(to_string(f1)).append(to_string(f2));
-        obCodeDecimal |= Calculator::fromBinaryToDecimal(flags);
+        obCodeDecimal += Calculator::fromBinaryToDecimal(flags);
         flags = "";
-
         flags.append(to_string(x)).append(to_string(b))
         .append(to_string(p)).append(to_string(f3));
 

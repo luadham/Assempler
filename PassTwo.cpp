@@ -9,4 +9,5 @@ PassTwo::PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable) {
     this->symbolTable = symbolTable;
     generateObjCodes();
     printObjCodes();
+    writeOut();
 }

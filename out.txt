@@ -1,8 +1,17 @@
-Location Counter
-0  copy  start  0000
-0  prog  stl  retadr
-3  cloop  +jsub  retadr
-7  -  +lda  length
-b  retadr  resw  1
-e  length  resw  1
-11  -  end  prog
+1000 first stl retadr 17202f
+1003 cloop +jsub rdrec 4b101026
+1007 - $lda zero 370102f
+100b - comp zero 2b2021
+100e - &jeq zero 32201e
+1011 - &jsub zero 48201b
+1014 - $j retadr 3f301032
+1018 - +sta buffer f101bed
+101c - lda three 3200d
+101f - +sta length f101bea
+1023 - jsub zero 4b2009
+1026 rdrec lda three 32003
+1029 - tio - f8
+102a - clear - B400
+102c three word 3 3
+102f zero word 0 0
+2bed - end - 

@@ -23,6 +23,7 @@ private:
     vector<SymbolTableLine> symbolTable;
     Calculator calculator;
     vector<string> objCodes;
+    const string outFile = "../out.txt";
 
     /*
      * Get Operand Location From symbol table
@@ -51,13 +52,14 @@ private:
             string opCode = symbolTable[i].codeLine.instruction.opCode;
             string nextPc = symbolTable[i + 1].locationLine;
             string instruction = symbolTable[i].codeLine.instruction.name;
+            cout << instruction << endl;
             if (instruction == "word") {
                 objCodes.push_back(operand);
             } else if (instruction == "resw" || instruction == "resb" ) continue;
-            else if (operand[0] == '&') {
+            else if (instruction[0] == '&') {
                 // Format 5
                 objCodes.push_back(format_five(operand, opCode, nextPc));
-            } else if (operand[0] == '$') {
+            } else if (instruction[0] == '$') {
                 // Format 6
                 objCodes.push_back(format_six(operand, opCode));
             }else if (instruction[0] == '+') {
@@ -96,6 +98,7 @@ private:
         string validOperand = getRestOfString(operand);
         string address = getOperandLocation(validOperand);
         int x = isIndexed(operand);
+        // TODO: base = 1 must change
         return formatSix.generateObjCode(_obCode, x, address, "1");
     }
 
@@ -105,14 +108,13 @@ private:
      */
     string format_five(string operand, string opCode, string pc) {
         FormatFive formatFive;
-        string _obCode = getOpCode(opCode, operand);
         string validOperand = getRestOfString(operand);
         int x = isIndexed(validOperand);
         int b = x;
         int p = !b;
         int operandValue = calculator.fromHexToDecimal(getOperandLocation(operand));
         int f2 = operandValue < calculator.fromHexToDecimal(pc);
-        return formatFive.generateObjCode(_obCode, x, b, p, f2, displacement(pc, validOperand));
+        return formatFive.generateObjCode(opCode, x, b, p, f2, displacement(pc, validOperand));
     }
 
     /*
@@ -159,7 +161,7 @@ private:
      */
     void printObjCodes() {
         for (int i = 0; i < objCodes.size(); i++) {
-            cout << objCodes[i] << endl;
+            cout << objCodes[i]  << " -> " << symbolTable[i + 1].codeLine.instruction.name << endl;
         }
     }
 
@@ -240,6 +242,21 @@ public:
         return Calculator::fromDecToHex(operandAddress - pcNext);
     }
 
+    void writeOut() {
+        ofstream file;
+        file.open(outFile);
+        if (file.fail()) {
+            cout << "Please Check Out file path" << endl;
+            return;
+        }
+        for (int i = 1; i < symbolTable.size(); i++) {
+            if (symbolTable[i].codeLine.instruction.name == "resw" || symbolTable[i].codeLine.instruction.name == "resb") continue;
+            file << symbolTable[i].locationLine << " " << symbolTable[i].codeLine.label << " ";
+            file << symbolTable[i].codeLine.instruction.name << " " << symbolTable[i].codeLine.operand << " ";
+            file << objCodes[i - 1] << endl;
+        }
+        file.close();
+    }
 
 };
 
