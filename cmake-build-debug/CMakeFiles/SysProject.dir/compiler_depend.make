@@ -3595,7 +3595,9 @@ CMakeFiles/SysProject.dir/PassTwo.cpp.obj: ../PassTwo.cpp \
   ../Formats/headers/FormatTwo.h \
   ../Formats/headers/FormatThree.h \
   ../headers/Calculator.h \
-  ../Formats/headers/FormatFour.h
+  ../Formats/headers/FormatFour.h \
+  ../Formats/headers/FormatFive.h \
+  ../Formats/headers/FormatSix.h
 
 CMakeFiles/SysProject.dir/SicXeInstructions.cpp.obj: ../SicXeInstructions.cpp \
   ../headers/SicXeInstructions.h \
@@ -4505,7 +4507,9 @@ CMakeFiles/SysProject.dir/main.cpp.obj: ../main.cpp \
   ../Formats/headers/FormatTwo.h \
   ../Formats/headers/FormatThree.h \
   ../headers/Calculator.h \
-  ../Formats/headers/FormatFour.h
+  ../Formats/headers/FormatFour.h \
+  ../Formats/headers/FormatFive.h \
+  ../Formats/headers/FormatSix.h
 
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstring:

@@ -1,7 +1,6 @@
 Loc Counter	Variable
+0		copy
 0		prog
 3		cloop
-c		retadr
-f		zero
-12		length
-15		redrec
+b		retadr
+e		length

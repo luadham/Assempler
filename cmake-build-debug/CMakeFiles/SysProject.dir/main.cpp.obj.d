@@ -310,4 +310,6 @@ CMakeFiles/SysProject.dir/main.cpp.obj: \
  C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatTwo.h \
  C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatThree.h \
  C:/Users/luadh/Desktop/Assempler/headers/Calculator.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatFour.h
+ C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatFour.h \
+ C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatFive.h \
+ C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatSix.h

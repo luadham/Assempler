@@ -12,11 +12,20 @@ using namespace std;
 class FormatTwo : public IFormat {
 public:
     FormatTwo();
-    string generateObjCode(string opCode, string reg_one, string reg_two) {
+    char reg[7] = {'a', 'x', 'l', 'b', 's', 't', 'f'};
+    int getRegNumber(char c) {
+        for (int i = 0; i < 7; i++) {
+            if (c == reg[i]) return i;
+        }
+        return 0;
+    }
+    string generateObjCode(string opCode, char reg_one, char reg_two) {
         string res = "";
         res += opCode;
-        res += reg_one;
-        res += (reg_two == "")? "0" : reg_two;
+        int reg1 = getRegNumber(reg_one);
+        int reg2 = getRegNumber(reg_two);
+        res += to_string(reg1);
+        res += to_string(reg2);
         return res;
     }
 };

@@ -1,11 +1,8 @@
-copy start 0
+copy start 0000
 prog stl  retadr
-cloop jsub redrec
--   lda length
--   comp zero
+cloop +jsub redrec
+-   +lda length
 retadr resw 1
-zero word 0
 length resw 1
-redrec ldx zero
 -  end prog
 

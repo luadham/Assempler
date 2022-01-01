@@ -50,6 +50,12 @@ int PassOne::getMemorySize(Line line) {
 void PassOne::generateLocationCounter() {
     SymbolTableLine locationLine;
     for (int i = 0; i < this->lines.size(); i++) {
+        if (lines[i].instruction.name == "start" || lines[i].instruction.name == "end") {
+            locationLine.locationLine = "0";
+            locationLine.codeLine = lines[i];
+            symbolTable.push_back(locationLine);
+            continue;
+        }
         locationLine.locationLine = Calculator::fromDecToHex(this->locationCounter);
         locationLine.codeLine = lines[i];
         this->symbolTable.push_back(locationLine);

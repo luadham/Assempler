@@ -14,6 +14,8 @@
 #include "../Formats/headers/FormatTwo.h"
 #include "../Formats/headers/FormatThree.h"
 #include "../Formats/headers/FormatFour.h"
+#include "../Formats/headers/FormatFive.h"
+#include "../Formats/headers/FormatSix.h"
 
 class PassTwo {
 private:
@@ -29,36 +31,91 @@ private:
         return "";
     }
 
+    bool isChar(char c) {
+        return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
+    }
+
     void generateObjCodes() {
-        cout << symbolTable[1].locationLine << endl;
         for (int i = 0; i < symbolTable.size() - 1; i++) {
-            if (symbolTable[i].codeLine.instruction.format == 1) {
-                FormatOne formatOne;
-                objCodes.push_back(formatOne.generateObjCode(symbolTable[i].codeLine.instruction.opCode));
+            string operand = symbolTable[i].codeLine.operand;
+            string opCode = symbolTable[i].codeLine.instruction.opCode;
+            string nextPc = symbolTable[i + 1].locationLine;
+            string instruction = symbolTable[i].codeLine.instruction.name;
+            if (instruction == "word") {
+                objCodes.push_back(operand);
+            } else if (instruction == "resw" || instruction == "resb" ) continue;
+            else if (operand[0] == '&') {
+                // Format 5
+                objCodes.push_back(format_five(operand, opCode, nextPc));
+            } else if (operand[0] == '$') {
+                // Format 6
+                objCodes.push_back(format_six(operand, opCode));
+            }else if (instruction[0] == '+') {
+                objCodes.push_back(format_four(operand, opCode));
+            }else if (symbolTable[i].codeLine.instruction.format == 1) {
+                // Fromat 1
+                objCodes.push_back(opCode);
             } else if (symbolTable[i].codeLine.instruction.format == 2) {
-                FormatTwo formatTwo;
-                string reg1 = "";
-                string reg2 = "";
-                splitStr(symbolTable[i].codeLine.operand, reg1, reg2);
-                objCodes.push_back(formatTwo.generateObjCode(symbolTable[i].codeLine.instruction.opCode, reg1, reg2));
+                // Format 2
+                string r1 = "", r2 = "";
+                splitStr(operand, r1, r2);
+                objCodes.push_back(format_two(opCode, r1[0], r2[0]));
             } else if (symbolTable[i].codeLine.instruction.format == 3) {
                 // Format 3
-                FormatThree formatThree;
-                int opCode = addressingMode(symbolTable[i].codeLine.operand) +
-                             calculator.fromHexToDecimal(symbolTable[i].codeLine.instruction.opCode);
-                int x = isIndexed(symbolTable[i].codeLine.operand);
-                int b = (x) ? 1 : 0;
-                int p = !b;
-                string oberand = symbolTable[i].codeLine.operand;
-                int disp = calculator.fromHexToDecimal(getOperandLocation(oberand)) -
-                           calculator.fromHexToDecimal(symbolTable[i + 1].locationLine);
-                objCodes.push_back(formatThree.generateObjCode(calculator.fromDecToHex(opCode), x, b, p,
-                                                               calculator.fromDecToHex(disp)));
-            } else {
-                // Format 4
-                FormatFour formatFour;
+                objCodes.push_back(format_three(operand, opCode, nextPc));
             }
         }
+    }
+
+    string format_two(string opCode, char r1, char r2) {
+        FormatTwo formatTwo;
+        return formatTwo.generateObjCode(opCode, r1, r2);
+    }
+    string format_six(string operand, string opCode) {
+        FormatSix formatSix;
+        string _obCode = getOpCode(opCode, operand);
+        string validOperand = getRestOfString(operand);
+        string address = getOperandLocation(validOperand);
+        int x = isIndexed(operand);
+        return formatSix.generateObjCode(_obCode, x, address, "1");
+    }
+    string format_five(string operand, string opCode, string pc) {
+        FormatFive formatFive;
+        string _obCode = getOpCode(opCode, operand);
+        string validOperand = getRestOfString(operand);
+        int x = isIndexed(validOperand);
+        int b = x;
+        int p = !b;
+        int operandValue = calculator.fromHexToDecimal(getOperandLocation(operand));
+        int f2 = operandValue < calculator.fromHexToDecimal(pc);
+        return formatFive.generateObjCode(_obCode, x, b, p, f2, displacement(pc, validOperand));
+    }
+
+    string format_four(string operand, string opCode) {
+        FormatFour formatFour;
+        string _opCode = getOpCode(opCode, operand);
+        string validOperand = getRestOfString(operand);
+        int x = isIndexed(operand);
+        int b = x;
+        int p = 0;
+        string address = getOperandLocation(validOperand);
+        return formatFour.generateObjCode(_opCode, x, b, p, address);
+    }
+
+    string format_three(string operand, string opCode, string pc) {
+        FormatThree formatThree;
+        string _opCode = getOpCode(opCode, operand);
+        string validOperand = getRestOfString(operand);
+        int x = isIndexed(operand);
+        int b = x;
+        int p = !b;
+        return formatThree.generateObjCode(_opCode, x, b, p,
+                                           displacement(pc, validOperand));
+    }
+
+    string getOpCode(string oldOpCode, string operand) {
+        int opCode = addressingMode(operand) + calculator.fromHexToDecimal(oldOpCode);
+        return calculator.fromDecToHex(opCode);
     }
 
     void printObjCodes() {
@@ -84,6 +141,7 @@ private:
     }
 
     string getRestOfString(string str) {
+        if (isChar(str[0])) return str;
         string res = "";
         for (int i = 1; i < str.size(); i++)
             res += str[i];

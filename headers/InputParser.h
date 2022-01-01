@@ -36,13 +36,22 @@ private:
         }
         return false;
     }
-
+    bool isChar(char c) {
+        return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
+    }
+    string getRestOfString(string str) {
+        if (isChar(str[0])) return str;
+        string res = "";
+        for (int i = 1; i < str.size(); i++)
+            res += str[i];
+        return res;
+    }
     Instruction getInstructionData(string instructionName) {
         Instruction instruction;
         instructionName = convertToLower(instructionName);
         instruction.name = instructionName;
         for (int i = 0; i < instructions.size(); i++) {
-            if (instructionName == instructions[i].name) {
+            if (getRestOfString(instructionName) == instructions[i].name) {
                 instruction.opCode = instructions[i].opCode;
                 instruction.format = instructions[i].format;
                 return instruction;
@@ -84,11 +93,13 @@ private:
             line.operand = convertToLower(word);
             if (line.instruction.name == "start") {
                 this->startProgram = calclator.fromHexToDecimal(line.operand);
+                inputLines.push_back(line);
                 continue;
             } else if (line.instruction.name == "end") {
+                inputLines.push_back(line);
                 continue;
             }
-            else if (validLine(line))
+            if (validLine(line))
                 inputLines.push_back(line);
             else {
                 error("Check Line Again !", lineNumber);
