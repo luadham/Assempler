@@ -38,4 +38,4 @@ public:
 };
 
 
-#endif //SYSPROJECT_FORMATSIX_H
+#endif

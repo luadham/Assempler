@@ -14,6 +14,6 @@
 102a - clear - B400
 102c three word 3 3
 102f zero word 0 0
-1032 retadr resw 1000 32fffff442
+1032 retadr resw 1000 32000
 1bea length resw 1 1
-1bed buffer lda retadr 1bed buffer lda retadr 
+1bed buffer lda adham 1bed buffer lda adham 

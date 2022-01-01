@@ -23,6 +23,7 @@ private:
     vector<SymbolTableLine> symbolTable;
     Calculator calculator;
     vector<string> objCodes;
+    vector<string> htRec;
     const string outFile = "../out.txt";
 
     /*
@@ -53,7 +54,7 @@ private:
             string opCode = symbolTable[i].codeLine.instruction.opCode;
             string nextPc = symbolTable[i + 1].locationLine;
             string instruction = symbolTable[i].codeLine.instruction.name;
-            cout << instruction << endl;
+            //cout << instruction << endl;
             if (isIndexed(operand)) {
                 string i = "", temp = "";
                 splitStr(operand, temp, i);
@@ -63,16 +64,16 @@ private:
             //cout << operand << endl;
             if (instruction == "word") {
                 objCodes.push_back(operand);
-            } else if (instruction == "resw" || instruction == "resb" ) continue;
+            } else if (instruction == "resw" || instruction == "resb") continue;
             else if (instruction[0] == '&') {
                 // Format 5
-                objCodes.push_back(format_five(operand, x,opCode, nextPc));
+                objCodes.push_back(format_five(operand, x, opCode, nextPc));
             } else if (instruction[0] == '$') {
                 // Format 6
-                objCodes.push_back(format_six(operand, x,opCode));
-            }else if (instruction[0] == '+') {
-                objCodes.push_back(format_four(operand, x,opCode));
-            }else if (symbolTable[i].codeLine.instruction.format == 1) {
+                objCodes.push_back(format_six(operand, x, opCode));
+            } else if (instruction[0] == '+') {
+                objCodes.push_back(format_four(operand, x, opCode));
+            } else if (symbolTable[i].codeLine.instruction.format == 1) {
                 // Fromat 1
                 objCodes.push_back(opCode);
             } else if (symbolTable[i].codeLine.instruction.format == 2) {
@@ -82,12 +83,39 @@ private:
                 objCodes.push_back(format_two(opCode, r1[0], r2[0]));
             } else if (symbolTable[i].codeLine.instruction.format == 3) {
                 // Format 3
-                objCodes.push_back(format_three(operand, x,opCode, nextPc));
+                objCodes.push_back(format_three(operand, x, opCode, nextPc));
             }
         }
         cout << "Done!" << endl;
     }
 
+    void generateHTERec() {
+        // cout << "Adham" << symbolTable[0].locationLine << endl;
+        int progLen = calculator.fromHexToDecimal(symbolTable[symbolTable.size() - 1].locationLine) -
+                      calculator.fromHexToDecimal(symbolTable[0].locationLine) + 1;
+        htRec.push_back(getHRec(symbolTable[0].codeLine.instruction.name, calculator.fromDecToHex(progLen)));
+        htRec.push_back(getERec(symbolTable[0].locationLine));
+        cout << htRec[0] << endl;
+        cout << htRec[1] << endl;
+    }
+
+    string getHRec(string prog_name, string prog_len) {
+        string res = "H";
+        res += prog_name;
+        int nameSize = 6 - prog_name.size();
+        int lenSize = 6 - prog_len.size();
+        while (nameSize--) res += " ";
+        while (lenSize--) res += "0";
+        res += prog_len;
+        return res;
+    }
+    string getERec(string start) {
+        string res = "E";
+        int size = 6 - start.size();
+        while (size--) res += "0";
+        res += start;
+        return res;
+    }
     /*
      * Get Format two Obj code
      * @return objcode
@@ -101,7 +129,7 @@ private:
      * Get Format Six obj code
      * @return objCode
      */
-    string format_six(string operand, int x,string opCode) {
+    string format_six(string operand, int x, string opCode) {
         FormatSix formatSix;
         string _obCode = getOpCode(opCode, operand);
         string validOperand = getRestOfString(operand);
@@ -114,7 +142,7 @@ private:
      * Get Format Five ObjCode
      * @return objCode
      */
-    string format_five(string operand, int x,string opCode, string pc) {
+    string format_five(string operand, int x, string opCode, string pc) {
         FormatFive formatFive;
         string validOperand = getRestOfString(operand);
         int b = x;
@@ -128,7 +156,7 @@ private:
      * Get objCode for format four
      * @return objCode
      */
-    string format_four(string operand, int x,string opCode) {
+    string format_four(string operand, int x, string opCode) {
         FormatFour formatFour;
         string _opCode = getOpCode(opCode, operand);
         string validOperand = getRestOfString(operand);
@@ -142,7 +170,7 @@ private:
      * Get obj code for format three
      * @return objCode
      */
-    string format_three(string operand, int x,string opCode, string pc) {
+    string format_three(string operand, int x, string opCode, string pc) {
         FormatThree formatThree;
         string _opCode = getOpCode(opCode, operand);
         string validOperand = getRestOfString(operand);
@@ -166,7 +194,7 @@ private:
      */
     void printObjCodes() {
         for (int i = 0; i < objCodes.size(); i++) {
-            cout << objCodes[i]  << " -> " << symbolTable[i + 1].codeLine.instruction.name << endl;
+            cout << objCodes[i] << " -> " << symbolTable[i + 1].codeLine.instruction.name << endl;
         }
     }
 

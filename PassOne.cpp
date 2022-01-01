@@ -50,7 +50,7 @@ void PassOne::generateLocationCounter() {
     SymbolTableLine locationLine;
     for (int i = 0; i < this->lines.size(); i++) {
         if (lines[i].instruction.name == "start") {
-            locationLine.locationLine = "0";
+            locationLine.locationLine = lines[i].operand;
             locationLine.codeLine = lines[i];
         } else if (lines[i].instruction.name == "end") {
             locationLine.locationLine = Calculator::fromDecToHex(this->locationCounter);;
