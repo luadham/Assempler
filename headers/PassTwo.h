@@ -52,7 +52,6 @@ private:
             string opCode = symbolTable[i].codeLine.instruction.opCode;
             string nextPc = symbolTable[i + 1].locationLine;
             string instruction = symbolTable[i].codeLine.instruction.name;
-            cout << instruction << endl;
             if (instruction == "word") {
                 objCodes.push_back(operand);
             } else if (instruction == "resw" || instruction == "resb" ) continue;
