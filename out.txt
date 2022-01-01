@@ -1,7 +1,7 @@
 Location Counter
 0  copy  start  0000
 0  prog  stl  retadr
-3  cloop  +jsub  redrec
+3  cloop  +jsub  retadr
 7  -  +lda  length
 b  retadr  resw  1
 e  length  resw  1

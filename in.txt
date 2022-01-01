@@ -1,6 +1,6 @@
 copy start 0000
 prog stl  retadr
-cloop +jsub redrec
+cloop +jsub retadr
 -   +lda length
 retadr resw 1
 length resw 1
