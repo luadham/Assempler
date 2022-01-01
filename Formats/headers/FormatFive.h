@@ -6,10 +6,11 @@
 #define SYSPROJECT_FORMATFIVE_H
 #include <bits/stdc++.h>
 #include "../../headers/Calculator.h"
+#include "IFormat.h"
 
 using namespace std;
 
-class FormatFive {
+class FormatFive : public IFormat {
 private:
     Calculator calc;
 public:

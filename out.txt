@@ -1,14 +1,4 @@
 Location Counter
 0  first  stl  retadr
 3  -  ldb  #length
-6  -  base  length
-6  cloop  +jsub  rdrec
-a  -  lda  length
-d  -  comp  #0
-10  -  jeq  endfile
-13  -  +jsub  wrrec
-17  -  j  cloop
-1a  endfil  lda  eof
-1d  eof  byte  c'eof'
-1e  adham  word  1
-21  adel  word  2
+6  cloop  +jsub  wrrec

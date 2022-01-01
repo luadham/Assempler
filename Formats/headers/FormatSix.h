@@ -6,9 +6,11 @@
 #define SYSPROJECT_FORMATSIX_H
 #include <bits/stdc++.h>
 #include "../../headers/Calculator.h"
+#include "IFormat.h"
+
 using namespace std;
 
-class FormatSix {
+class FormatSix : public IFormat {
 private:
     Calculator calculator;
 public:

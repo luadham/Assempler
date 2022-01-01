@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/SysProject.dir/Calculator.cpp.obj"
+  "CMakeFiles/SysProject.dir/Calculator.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/Formats/FormatFive.cpp.obj"
+  "CMakeFiles/SysProject.dir/Formats/FormatFive.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/Formats/FormatFour.cpp.obj"
+  "CMakeFiles/SysProject.dir/Formats/FormatFour.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/Formats/FormatOne.cpp.obj"
+  "CMakeFiles/SysProject.dir/Formats/FormatOne.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/Formats/FormatSix.cpp.obj"
+  "CMakeFiles/SysProject.dir/Formats/FormatSix.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/Formats/FormatThree.cpp.obj"
+  "CMakeFiles/SysProject.dir/Formats/FormatThree.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/Formats/FormatTwo.cpp.obj"
+  "CMakeFiles/SysProject.dir/Formats/FormatTwo.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/InputParser.cpp.obj"
+  "CMakeFiles/SysProject.dir/InputParser.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/Instruction.cpp.obj"
+  "CMakeFiles/SysProject.dir/Instruction.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/Line.cpp.obj"
+  "CMakeFiles/SysProject.dir/Line.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/PassOne.cpp.obj"
+  "CMakeFiles/SysProject.dir/PassOne.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/PassTwo.cpp.obj"
+  "CMakeFiles/SysProject.dir/PassTwo.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/SicXeInstructions.cpp.obj"
+  "CMakeFiles/SysProject.dir/SicXeInstructions.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/SymbolTableLine.cpp.obj"
+  "CMakeFiles/SysProject.dir/SymbolTableLine.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/main.cpp.obj"
+  "CMakeFiles/SysProject.dir/main.cpp.obj.d"
+  "SysProject.exe"
+  "SysProject.exe.manifest"
+  "SysProject.pdb"
+  "libSysProject.dll.a"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/SysProject.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

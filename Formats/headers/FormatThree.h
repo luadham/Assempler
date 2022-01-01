@@ -6,9 +6,11 @@
 #define SYSPROJECT_FORMATTHREE_H
 #include <bits/stdc++.h>
 #include "../../headers/Calculator.h"
+#include "IFormat.h"
+
 using namespace std;
 
-class FormatThree {
+class FormatThree : public IFormat {
 private:
     Calculator calc;
 public:

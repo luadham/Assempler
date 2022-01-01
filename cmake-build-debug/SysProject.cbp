@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="SysProject"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/luadh/Desktop/Assempler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SysProject">
+				<Option output="C:/Users/luadh/Desktop/Assempler/cmake-build-debug/SysProject.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/luadh/Desktop/Assempler/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/mingw/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 SysProject"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SysProject/fast">
+				<Option output="C:/Users/luadh/Desktop/Assempler/cmake-build-debug/SysProject.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/luadh/Desktop/Assempler/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/mingw/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 SysProject/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/luadh/Desktop/Assempler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/luadh/Desktop/Assempler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/luadh/Desktop/Assempler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Calculator.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/FormatFive.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/FormatFour.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/FormatOne.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/FormatSix.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/FormatThree.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/FormatTwo.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatFive.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatFour.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatOne.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatSix.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatThree.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatTwo.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Formats/headers/IFormat.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/InputParser.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Instruction.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/Line.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/PassOne.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/PassTwo.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/SicXeInstructions.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/SymbolTableLine.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/headers/Calculator.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/headers/InputParser.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/headers/Instruction.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/headers/Line.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/headers/PassOne.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/headers/PassTwo.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/headers/SicXeInstructions.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/headers/SymbolTableLine.h">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/main.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

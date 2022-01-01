@@ -5,9 +5,11 @@
 #ifndef SYSPROJECT_FORMATTWO_H
 #define SYSPROJECT_FORMATTWO_H
 #include <bits/stdc++.h>
+#include "IFormat.h"
+
 using namespace std;
 
-class FormatTwo {
+class FormatTwo : public IFormat {
 public:
     FormatTwo();
     string generateObjCode(string opCode, string reg_one, string reg_two) {

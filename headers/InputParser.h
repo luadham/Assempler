@@ -39,6 +39,7 @@ private:
 
     Instruction getInstructionData(string instructionName) {
         Instruction instruction;
+        instructionName = convertToLower(instructionName);
         instruction.name = instructionName;
         for (int i = 0; i < instructions.size(); i++) {
             if (instructionName == instructions[i].name) {
@@ -78,9 +79,7 @@ private:
             Line line;
             line.label = convertToLower(word);
             file >> word;
-            line.instruction.name = convertToLower(word);
-            line.instruction.format;
-            line.instruction.opCode;
+            line.instruction = getInstructionData(word);
             file >> word;
             line.operand = convertToLower(word);
             if (line.instruction.name == "start") {
