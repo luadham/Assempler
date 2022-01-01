@@ -53,7 +53,7 @@ private:
             string opCode = symbolTable[i].codeLine.instruction.opCode;
             string nextPc = symbolTable[i + 1].locationLine;
             string instruction = symbolTable[i].codeLine.instruction.name;
-            //cout << instruction << endl;
+            cout << instruction << endl;
             if (isIndexed(operand)) {
                 string i = "", temp = "";
                 splitStr(operand, temp, i);
@@ -85,6 +85,7 @@ private:
                 objCodes.push_back(format_three(operand, x,opCode, nextPc));
             }
         }
+        cout << "Done!" << endl;
     }
 
     /*
@@ -243,14 +244,13 @@ public:
     string displacement(string nextLocation, string operand) {
         int operandAddress = calculator.fromHexToDecimal(getOperandLocation(operand));
         int pcNext = calculator.fromHexToDecimal(nextLocation);
-        return Calculator::fromDecToHex(operandAddress - pcNext);
+        return calculator.fromDecToHex(operandAddress - pcNext);
     }
 
     void writeOut() {
         ofstream file;
         file.open(outFile);
-        file.clear();
-        if (file.fail()) {
+        if (file.fail() || file.bad()) {
             cout << "Please Check Out file path" << endl;
             return;
         }

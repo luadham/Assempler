@@ -23,7 +23,10 @@ public:
         flags = calc.formBinaryToHex(flags);
         res += flags;
         int bits = 3 - disp.size();
-        while (bits--) res += "0";
+        while (bits > 0) {
+            res += '0';
+            bits--;
+        }
         res += disp;
         return res;
     }

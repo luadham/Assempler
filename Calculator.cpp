@@ -23,12 +23,13 @@ int Calculator::fromHexToDecimal(string hex) {
 }
 
 string Calculator::fromDecToHex(int number) {
-    if (number == 0) {
+    unsigned int n = number;
+    if (n == 0) {
         return "0";
     }
     string temp = "";
-    while (number) {
-        int rem = number % 16;
+    while (n) {
+        int rem = n % 16;
         if (rem == 10) temp += 'a';
         else if (rem == 11) temp += 'b';
         else if (rem == 12) temp += 'c';
@@ -36,7 +37,7 @@ string Calculator::fromDecToHex(int number) {
         else if (rem == 14) temp += 'e';
         else if (rem == 15) temp += 'f';
         else temp += to_string(rem);
-        number /= 16;
+        n /= 16;
     }
     string res = "";
     for (int i = temp.size() - 1; i >= 0; i--) {

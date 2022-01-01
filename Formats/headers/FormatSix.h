@@ -28,7 +28,10 @@ public:
         flags = Calculator::formBinaryToHex(flags);
         res += flags;
         int bits = 5 - address.size();
-        while (bits--) res += '0';
+        while (bits > 0) {
+            res += '0';
+            bits--;
+        }
         res += address;
         return res;
     }
