@@ -4,6 +4,7 @@
 
 #ifndef SYSPROJECT_PASSTWO_H
 #define SYSPROJECT_PASSTWO_H
+
 #include <bits/stdc++.h>
 #include "Line.h"
 #include "SymbolTableLine.h"
@@ -22,43 +23,40 @@ private:
     vector<string> objCodes;
 
     string getOperandLocation(string operand) {
-        for (auto i : symbolTable) {
-            if (operand == i.codeLine.operand) return i.locationLine;
+        for (auto i: symbolTable) {
+            if (operand == i.codeLine.label) return i.locationLine;
         }
         return "";
     }
+
     void generateObjCodes() {
-        string s1 = ""; string s2 = "";
-        splitStr("adham,adel", s1, s2);
-        cout << "s1 : " << s1 << " " << "s2 : " << s2 << endl;
-        for (SymbolTableLine inputLine : symbolTable) {
-            if (inputLine.codeLine.instruction.format == 1) {
-                // Format 1
+        cout << symbolTable[1].locationLine << endl;
+        for (int i = 0; i < symbolTable.size() - 1; i++) {
+            if (symbolTable[i].codeLine.instruction.format == 1) {
                 FormatOne formatOne;
-                objCodes.push_back(formatOne.generateObjCode(inputLine.codeLine.instruction.opCode));
-            } else if (inputLine.codeLine.instruction.format == 2){
-                // Format 2
-                // n i
+                objCodes.push_back(formatOne.generateObjCode(symbolTable[i].codeLine.instruction.opCode));
+            } else if (symbolTable[i].codeLine.instruction.format == 2) {
                 FormatTwo formatTwo;
                 string reg1 = "";
                 string reg2 = "";
-                splitStr(inputLine.codeLine.operand, reg1, reg2);
-                objCodes.push_back(formatTwo.generateObjCode(inputLine.codeLine.instruction.opCode, reg1, reg2));
-            } else if (inputLine.codeLine.instruction.format == 3) {
+                splitStr(symbolTable[i].codeLine.operand, reg1, reg2);
+                objCodes.push_back(formatTwo.generateObjCode(symbolTable[i].codeLine.instruction.opCode, reg1, reg2));
+            } else if (symbolTable[i].codeLine.instruction.format == 3) {
                 // Format 3
                 FormatThree formatThree;
-                int opCode = addressingMode(inputLine.codeLine.operand) + calculator.fromHexToDecimal(inputLine.codeLine.instruction.opCode);
-                int x = isIndexed(inputLine.codeLine.operand);
-                int b = (x)? 1 : 0;
+                int opCode = addressingMode(symbolTable[i].codeLine.operand) +
+                             calculator.fromHexToDecimal(symbolTable[i].codeLine.instruction.opCode);
+                int x = isIndexed(symbolTable[i].codeLine.operand);
+                int b = (x) ? 1 : 0;
                 int p = !b;
-                string oberand = (x != 3)? getRestOfString(inputLine.codeLine.operand) : inputLine.codeLine.operand;
-                int disp = calculator.fromHexToDecimal(getOperandLocation(oberand)) - calculator.fromHexToDecimal(inputLine.locationLine);
-                objCodes.push_back(formatThree.generateObjCode(
-                        calculator.fromDecToHex(opCode),
-                        x, b, p,
-                        calculator.fromDecToHex(disp)));
+                string oberand = symbolTable[i].codeLine.operand;
+                int disp = calculator.fromHexToDecimal(getOperandLocation(oberand)) -
+                           calculator.fromHexToDecimal(symbolTable[i + 1].locationLine);
+                objCodes.push_back(formatThree.generateObjCode(calculator.fromDecToHex(opCode), x, b, p,
+                                                               calculator.fromDecToHex(disp)));
             } else {
                 // Format 4
+                FormatFour formatFour;
             }
         }
     }
@@ -94,6 +92,7 @@ private:
 
 public:
     PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable);
+
     /*
      * check n i
      * if 0 1 return 1
@@ -105,6 +104,7 @@ public:
         else if (operand[0] == '@') return 2;
         else return 3;
     }
+
     /*
      * check if instruction is indexed or not
      */
@@ -114,6 +114,7 @@ public:
         }
         return false;
     }
+
     /*
      * @return true if instruction is format four
      */

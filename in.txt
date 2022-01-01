@@ -1,4 +1,11 @@
 copy start 0
-first stl retadr
--   ldb #length
-cloop +jsub wrrec
+prog stl  retadr
+cloop jsub redrec
+-   lda length
+-   comp zero
+retadr resw 1
+zero word 0
+length resw 1
+redrec ldx zero
+-  end prog
+

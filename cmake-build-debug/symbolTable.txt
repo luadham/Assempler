@@ -1,3 +1,7 @@
 Loc Counter	Variable
-0		first
-6		cloop
+0		prog
+3		cloop
+c		retadr
+f		zero
+12		length
+15		redrec

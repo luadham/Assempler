@@ -7,6 +7,7 @@
 using namespace std;
 
 int main() {
+    Calculator c;
     SicXeInstructions instructions;
     InputParser inputParser(instructions.getInstructions());
     PassOne passOne(inputParser.getLines(), inputParser.getStartLocation());
