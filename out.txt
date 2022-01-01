@@ -5,4 +5,4 @@ Location Counter
 7  -  +lda  length
 b  retadr  resw  1
 e  length  resw  1
-0  -  end  prog
+11  -  end  prog

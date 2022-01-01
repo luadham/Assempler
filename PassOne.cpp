@@ -53,21 +53,25 @@ void PassOne::generateLocationCounter() {
         if (i > 0 && lines[i].instruction.name != "word" && lines[i].instruction.name != "resw" &&
             lines[i].instruction.name != "byte" &&
             lines[i].instruction.name != "resb" &&
+            lines[i].operand[0] != '#' &&
+            lines[i].operand[0] != '=' &&
             !isExistLabe(lines[i].operand)) {
             cout << lines[i].operand << endl;
             cout << "Check Line : " << i + 1 << endl;
             return;
         }
-        if (lines[i].instruction.name == "start" || lines[i].instruction.name == "end") {
+        if (lines[i].instruction.name == "start") {
             locationLine.locationLine = "0";
             locationLine.codeLine = lines[i];
-            symbolTable.push_back(locationLine);
-            continue;
+        } else if (lines[i].instruction.name == "end") {
+            locationLine.locationLine = Calculator::fromDecToHex(this->locationCounter);;
+            locationLine.codeLine = lines[i];
+        } else {
+            locationLine.locationLine = Calculator::fromDecToHex(this->locationCounter);
+            locationLine.codeLine = lines[i];
+            incrementLocationCounter(lines[i]);
         }
-        locationLine.locationLine = Calculator::fromDecToHex(this->locationCounter);
-        locationLine.codeLine = lines[i];
         this->symbolTable.push_back(locationLine);
-        incrementLocationCounter(lines[i]);
     }
 }
 
