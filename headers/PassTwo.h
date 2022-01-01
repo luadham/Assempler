@@ -52,6 +52,7 @@ private:
             string opCode = symbolTable[i].codeLine.instruction.opCode;
             string nextPc = symbolTable[i + 1].locationLine;
             string instruction = symbolTable[i].codeLine.instruction.name;
+            cout << instruction << endl;
             if (instruction == "word") {
                 objCodes.push_back(operand);
             } else if (instruction == "resw" || instruction == "resb" ) continue;
@@ -244,12 +245,12 @@ public:
     void writeOut() {
         ofstream file;
         file.open(outFile);
+        file.clear();
         if (file.fail()) {
             cout << "Please Check Out file path" << endl;
             return;
         }
-        for (int i = 1; i < symbolTable.size(); i++) {
-            if (symbolTable[i].codeLine.instruction.name == "resw" || symbolTable[i].codeLine.instruction.name == "resb") continue;
+        for (int i = 1; i < symbolTable.size() - 1; i++) {
             file << symbolTable[i].locationLine << " " << symbolTable[i].codeLine.label << " ";
             file << symbolTable[i].codeLine.instruction.name << " " << symbolTable[i].codeLine.operand << " ";
             file << objCodes[i - 1] << endl;

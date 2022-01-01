@@ -5,7 +5,7 @@
 #include "headers/PassOne.h"
 
 PassOne::PassOne(vector<Line> input, int startLocation) {
-
+    outFile = "../out.txt";
     symbolTableFile = "symbolTable.txt";
     locationCounter = startLocation;
     this->lines = input;

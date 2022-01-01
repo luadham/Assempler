@@ -14,4 +14,4 @@
 102a - clear - B400
 102c three word 3 3
 102f zero word 0 0
-2bed - end - 
+1032 retadr resw 1000 1032 retadr resw 1000 
