@@ -49,16 +49,6 @@ int PassOne::getMemorySize(Line line) {
 void PassOne::generateLocationCounter() {
     SymbolTableLine locationLine;
     for (int i = 0; i < this->lines.size(); i++) {
-        if (i > 0 && lines[i].instruction.name != "word" && lines[i].instruction.name != "resw" &&
-            lines[i].instruction.name != "byte" &&
-            lines[i].instruction.name != "resb" &&
-            lines[i].operand[0] != '#' &&
-            lines[i].operand[0] != '=' &&
-            !isExistLabe(lines[i].operand)) {
-            cout << lines[i].operand << endl;
-            cout << "Check Line : " << i + 1 << endl;
-            return;
-        }
         if (lines[i].instruction.name == "start") {
             locationLine.locationLine = "0";
             locationLine.codeLine = lines[i];
@@ -99,6 +89,10 @@ void PassOne::generateSymbolTable() {
 
 vector<SymbolTableLine> PassOne::getSymbolTable() {
     return this->symbolTable;
+}
+
+bool PassOne::validOperand(string operand, string instruction) {
+    return isExistLabel(operand) && instruction == "word";
 }
 
 

@@ -48,22 +48,30 @@ private:
      */
     void generateObjCodes() {
         for (int i = 0; i < symbolTable.size() - 1; i++) {
+            int x = 0;
             string operand = symbolTable[i].codeLine.operand;
             string opCode = symbolTable[i].codeLine.instruction.opCode;
             string nextPc = symbolTable[i + 1].locationLine;
             string instruction = symbolTable[i].codeLine.instruction.name;
-            cout << instruction << endl;
+            //cout << instruction << endl;
+            if (isIndexed(operand)) {
+                string i = "", temp = "";
+                splitStr(operand, temp, i);
+                operand = temp;
+                x = 1;
+            }
+            //cout << operand << endl;
             if (instruction == "word") {
                 objCodes.push_back(operand);
             } else if (instruction == "resw" || instruction == "resb" ) continue;
             else if (instruction[0] == '&') {
                 // Format 5
-                objCodes.push_back(format_five(operand, opCode, nextPc));
+                objCodes.push_back(format_five(operand, x,opCode, nextPc));
             } else if (instruction[0] == '$') {
                 // Format 6
-                objCodes.push_back(format_six(operand, opCode));
+                objCodes.push_back(format_six(operand, x,opCode));
             }else if (instruction[0] == '+') {
-                objCodes.push_back(format_four(operand, opCode));
+                objCodes.push_back(format_four(operand, x,opCode));
             }else if (symbolTable[i].codeLine.instruction.format == 1) {
                 // Fromat 1
                 objCodes.push_back(opCode);
@@ -74,7 +82,7 @@ private:
                 objCodes.push_back(format_two(opCode, r1[0], r2[0]));
             } else if (symbolTable[i].codeLine.instruction.format == 3) {
                 // Format 3
-                objCodes.push_back(format_three(operand, opCode, nextPc));
+                objCodes.push_back(format_three(operand, x,opCode, nextPc));
             }
         }
     }
@@ -92,12 +100,11 @@ private:
      * Get Format Six obj code
      * @return objCode
      */
-    string format_six(string operand, string opCode) {
+    string format_six(string operand, int x,string opCode) {
         FormatSix formatSix;
         string _obCode = getOpCode(opCode, operand);
         string validOperand = getRestOfString(operand);
         string address = getOperandLocation(validOperand);
-        int x = isIndexed(operand);
         // TODO: base = 1 must change
         return formatSix.generateObjCode(_obCode, x, address, "1");
     }
@@ -106,10 +113,9 @@ private:
      * Get Format Five ObjCode
      * @return objCode
      */
-    string format_five(string operand, string opCode, string pc) {
+    string format_five(string operand, int x,string opCode, string pc) {
         FormatFive formatFive;
         string validOperand = getRestOfString(operand);
-        int x = isIndexed(validOperand);
         int b = x;
         int p = !b;
         int operandValue = calculator.fromHexToDecimal(getOperandLocation(operand));
@@ -121,11 +127,10 @@ private:
      * Get objCode for format four
      * @return objCode
      */
-    string format_four(string operand, string opCode) {
+    string format_four(string operand, int x,string opCode) {
         FormatFour formatFour;
         string _opCode = getOpCode(opCode, operand);
         string validOperand = getRestOfString(operand);
-        int x = isIndexed(operand);
         int b = x;
         int p = 0;
         string address = getOperandLocation(validOperand);
@@ -136,11 +141,10 @@ private:
      * Get obj code for format three
      * @return objCode
      */
-    string format_three(string operand, string opCode, string pc) {
+    string format_three(string operand, int x,string opCode, string pc) {
         FormatThree formatThree;
         string _opCode = getOpCode(opCode, operand);
         string validOperand = getRestOfString(operand);
-        int x = isIndexed(operand);
         int b = x;
         int p = !b;
         return formatThree.generateObjCode(_opCode, x, b, p,
@@ -177,7 +181,7 @@ private:
             if (str[i] == ',') break;
             cnt++;
         }
-        for (int i = 0; i <= cnt; i++) {
+        for (int i = 0; i < cnt; i++) {
             reg1 += str[i];
         }
         for (int i = cnt + 1; i < str.size(); i++) {

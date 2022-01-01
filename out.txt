@@ -1,12 +1,12 @@
-1000 first stl retadr 17202f
+1000 first stl retadr,x 17c02f
 1003 cloop +jsub rdrec 4b101026
 1007 - $lda zero 370102f
-100b - comp zero 2b2021
+100b - comp #zero 292021
 100e - &jeq zero 32201e
 1011 - &jsub zero 48201b
 1014 - $j retadr 3f301032
 1018 - +sta buffer f101bed
-101c - lda three 3200d
+101c - lda @three 2200d
 101f - +sta length f101bea
 1023 - jsub zero 4b2009
 1026 rdrec lda three 32003
