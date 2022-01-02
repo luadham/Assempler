@@ -368,6 +368,30 @@ Line.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SysProject.dir\build.make CMakeFiles/SysProject.dir/Line.cpp.s
 .PHONY : Line.cpp.s
 
+ObjCode.obj: ObjCode.cpp.obj
+.PHONY : ObjCode.obj
+
+# target to build an object file
+ObjCode.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SysProject.dir\build.make CMakeFiles/SysProject.dir/ObjCode.cpp.obj
+.PHONY : ObjCode.cpp.obj
+
+ObjCode.i: ObjCode.cpp.i
+.PHONY : ObjCode.i
+
+# target to preprocess a source file
+ObjCode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SysProject.dir\build.make CMakeFiles/SysProject.dir/ObjCode.cpp.i
+.PHONY : ObjCode.cpp.i
+
+ObjCode.s: ObjCode.cpp.s
+.PHONY : ObjCode.s
+
+# target to generate assembly for a file
+ObjCode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SysProject.dir\build.make CMakeFiles/SysProject.dir/ObjCode.cpp.s
+.PHONY : ObjCode.cpp.s
+
 PassOne.obj: PassOne.cpp.obj
 .PHONY : PassOne.obj
 
@@ -527,6 +551,9 @@ help:
 	@echo ... Line.obj
 	@echo ... Line.i
 	@echo ... Line.s
+	@echo ... ObjCode.obj
+	@echo ... ObjCode.i
+	@echo ... ObjCode.s
 	@echo ... PassOne.obj
 	@echo ... PassOne.i
 	@echo ... PassOne.s

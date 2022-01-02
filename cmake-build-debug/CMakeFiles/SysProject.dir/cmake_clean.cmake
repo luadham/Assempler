@@ -19,6 +19,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/SysProject.dir/Instruction.cpp.obj.d"
   "CMakeFiles/SysProject.dir/Line.cpp.obj"
   "CMakeFiles/SysProject.dir/Line.cpp.obj.d"
+  "CMakeFiles/SysProject.dir/ObjCode.cpp.obj"
+  "CMakeFiles/SysProject.dir/ObjCode.cpp.obj.d"
   "CMakeFiles/SysProject.dir/PassOne.cpp.obj"
   "CMakeFiles/SysProject.dir/PassOne.cpp.obj.d"
   "CMakeFiles/SysProject.dir/PassTwo.cpp.obj"

@@ -1,5 +1,6 @@
-CMakeFiles/SysProject.dir/main.cpp.obj: \
- C:\Users\luadh\Desktop\Assempler\main.cpp \
+CMakeFiles/SysProject.dir/ObjCode.cpp.obj: \
+ C:\Users\luadh\Desktop\Assempler\ObjCode.cpp \
+ C:\Users\luadh\Desktop\Assempler\ObjCode.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/stdc++.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cassert \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -293,24 +294,4 @@ CMakeFiles/SysProject.dir/main.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/unordered_map.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/unordered_set \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/unordered_set.h \
- C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/shared_mutex \
- C:\Users\luadh\Desktop\Assempler\headers/InputParser.h \
- C:\Users\luadh\Desktop\Assempler\headers/Instruction.h \
- C:\Users\luadh\Desktop\Assempler\headers/Line.h \
- C:\Users\luadh\Desktop\Assempler\headers/Calculator.h \
- C:\Users\luadh\Desktop\Assempler\headers/SicXeInstructions.h \
- C:\Users\luadh\Desktop\Assempler\headers/Calculator.h \
- C:\Users\luadh\Desktop\Assempler\headers/PassOne.h \
- C:\Users\luadh\Desktop\Assempler\headers/InputParser.h \
- C:\Users\luadh\Desktop\Assempler\headers/SymbolTableLine.h \
- C:\Users\luadh\Desktop\Assempler\headers/PassTwo.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/IFormat.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatOne.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/IFormat.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatTwo.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatThree.h \
- C:/Users/luadh/Desktop/Assempler/headers/Calculator.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatFour.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatFive.h \
- C:/Users/luadh/Desktop/Assempler/Formats/headers/FormatSix.h \
- C:/Users/luadh/Desktop/Assempler/ObjCode.h
+ C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/shared_mutex

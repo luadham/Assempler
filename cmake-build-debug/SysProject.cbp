@@ -135,6 +135,12 @@
 		<Unit filename="C:/Users/luadh/Desktop/Assempler/Line.cpp">
 			<Option target="SysProject"/>
 		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/ObjCode.cpp">
+			<Option target="SysProject"/>
+		</Unit>
+		<Unit filename="C:/Users/luadh/Desktop/Assempler/ObjCode.h">
+			<Option target="SysProject"/>
+		</Unit>
 		<Unit filename="C:/Users/luadh/Desktop/Assempler/PassOne.cpp">
 			<Option target="SysProject"/>
 		</Unit>

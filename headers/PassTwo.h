@@ -16,13 +16,14 @@
 #include "../Formats/headers/FormatFour.h"
 #include "../Formats/headers/FormatFive.h"
 #include "../Formats/headers/FormatSix.h"
+#include "../ObjCode.h"
 
 class PassTwo {
 private:
     vector<Line> input;
     vector<SymbolTableLine> symbolTable;
     Calculator calculator;
-    vector<string> objCodes;
+    vector<ObjCode> objCodes;
     vector<string> htRec;
     const string outFile = "../out.txt";
 
@@ -54,6 +55,7 @@ private:
             string opCode = symbolTable[i].codeLine.instruction.opCode;
             string nextPc = symbolTable[i + 1].locationLine;
             string instruction = symbolTable[i].codeLine.instruction.name;
+            ObjCode objCodeLine;
             //cout << instruction << endl;
             if (isIndexed(operand)) {
                 string i = "", temp = "";
@@ -63,27 +65,48 @@ private:
             }
             //cout << operand << endl;
             if (instruction == "word") {
-                objCodes.push_back(operand);
+                objCodeLine.objCode = operand;
+                objCodeLine.isModified = false;
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodes.push_back(objCodeLine);
             } else if (instruction == "resw" || instruction == "resb") continue;
             else if (instruction[0] == '&') {
                 // Format 5
-                objCodes.push_back(format_five(operand, x, opCode, nextPc));
+                objCodeLine.isModified = false;
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodeLine.objCode = format_five(operand, x, opCode, nextPc);
+                objCodes.push_back(objCodeLine);
             } else if (instruction[0] == '$') {
                 // Format 6
-                objCodes.push_back(format_six(operand, x, opCode));
+                objCodeLine.isModified = true;
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodeLine.objCode = format_six(operand, x, opCode);
+                objCodes.push_back(objCodeLine);
             } else if (instruction[0] == '+') {
-                objCodes.push_back(format_four(operand, x, opCode));
+                objCodeLine.isModified = true;
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodeLine.objCode = format_four(operand, x, opCode);
+                objCodes.push_back(objCodeLine);
             } else if (symbolTable[i].codeLine.instruction.format == 1) {
                 // Fromat 1
-                objCodes.push_back(opCode);
+                objCodeLine.isModified = false;
+                objCodeLine.objCode = opCode;
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodes.push_back(objCodeLine);
             } else if (symbolTable[i].codeLine.instruction.format == 2) {
                 // Format 2
                 string r1 = "", r2 = "";
                 splitStr(operand, r1, r2);
-                objCodes.push_back(format_two(opCode, r1[0], r2[0]));
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodeLine.isModified = false;
+                objCodeLine.objCode = format_two(opCode, r1[0], r2[0]);
+                objCodes.push_back(objCodeLine);
             } else if (symbolTable[i].codeLine.instruction.format == 3) {
                 // Format 3
-                objCodes.push_back(format_three(operand, x, opCode, nextPc));
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodeLine.isModified = false;
+                objCodeLine.objCode = format_three(operand, x, opCode, nextPc);
+                objCodes.push_back(objCodeLine);
             }
         }
         cout << "Done!" << endl;
@@ -189,14 +212,6 @@ private:
         return calculator.fromDecToHex(opCode);
     }
 
-    /*
-     * Just for testing
-     */
-    void printObjCodes() {
-        for (int i = 0; i < objCodes.size(); i++) {
-            cout << objCodes[i] << " -> " << symbolTable[i + 1].codeLine.instruction.name << endl;
-        }
-    }
 
     /*
      * Split string that have ,
@@ -282,13 +297,8 @@ public:
             cout << "Please Check Out file path" << endl;
             return;
         }
-        for (int i = 0; i < symbolTable.size(); i++) {
-            file << symbolTable[i].locationLine << " " << symbolTable[i].codeLine.label << " ";
-            file << symbolTable[i].codeLine.instruction.name << " " << symbolTable[i].codeLine.operand << endl;
-        }
-        file << endl;
         for (int i = 0; i < objCodes.size(); i++) {
-            file << objCodes[i] << endl;
+            file << objCodes[i].location << " " << objCodes[i].objCode << endl;
         }
         file.close();
     }
