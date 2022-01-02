@@ -26,7 +26,7 @@ private:
     vector<ObjCode> objCodes;
     vector<string> htRec;
     const string outFile = "../out.txt";
-
+    const string htmeFile = "../htme.txt";
     /*
      * Get Operand Location From symbol table
      */
@@ -127,6 +127,9 @@ private:
             cout << i << endl;
         }
     }
+    /*
+     * Generate HTME Record
+     */
     void generateHTERec() {
         // cout << "Adham" << symbolTable[0].locationLine << endl;
         int startAddress = calculator.fromHexToDecimal(symbolTable[0].locationLine);
@@ -159,6 +162,9 @@ private:
 
     }
 
+    /*
+     * Generate Modification Record
+     */
     void generateMRec() {
         for (int i = 0; i < objCodes.size(); i++) {
             if (objCodes[i].isModified) {
@@ -167,6 +173,9 @@ private:
         }
     }
 
+    /*
+     * Return H Rec
+     */
     string getHRec(string prog_name, string prog_len) {
         string res = "H";
         res += prog_name;
@@ -177,6 +186,9 @@ private:
         res += prog_len;
         return res;
     }
+    /*
+     * Return E Record
+     */
     string getERec(string start) {
         string res = "E";
         int size = 6 - start.size();
@@ -185,6 +197,9 @@ private:
         return res;
     }
 
+    /*
+     * Rteurn T Record
+     */
     string getTRec(string start, string len, string instructions) {
         string res = "T";
         int startSize = 6 - start.size();
@@ -197,6 +212,9 @@ private:
         return res;
     }
 
+    /*
+     * Return M Record
+     */
     string getMRec(string adress) {
         string res = "";
         int size = 6 - adress.size();
@@ -357,7 +375,10 @@ public:
         return calculator.fromDecToHex(operandAddress - pcNext);
     }
 
-    void writeOut() {
+    /*
+     * Write objCode in file
+     */
+    void writeOut_objCode() {
         ofstream file;
         file.open(outFile);
         if (file.fail() || file.bad()) {
@@ -366,6 +387,22 @@ public:
         }
         for (int i = 0; i < objCodes.size(); i++) {
             file << objCodes[i].location << " " << objCodes[i].objCode << endl;
+        }
+        file.close();
+    }
+
+    /*
+     * Write htme in file
+     */
+    void writeOut_htme() {
+        ofstream file;
+        file.open(htmeFile);
+        if (file.fail() || file.bad()) {
+            cout << "Please Check Out file path" << endl;
+            return;
+        }
+        for (int i = 0; i < objCodes.size(); i++) {
+            file << htRec[i] << endl;
         }
         file.close();
     }

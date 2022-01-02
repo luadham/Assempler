@@ -8,6 +8,7 @@ PassTwo::PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable) {
     this->input = input;
     this->symbolTable = symbolTable;
     generateObjCodes();
-    writeOut();
+    writeOut_objCode();
     generateHTERec();
+    writeOut_htme();
 }
