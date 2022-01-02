@@ -31,13 +31,32 @@ public:
         res += Calculator::fromDecToHex(obCodeDecimal);
         res += flags;
 
-        int bits = 3 - disp.size();
-        while (bits > 0) {
-            res += '0';
-            bits--;
-        }
-        res += disp;
+        if (disp[0] == 'f' && disp[1] == 'f') {
+            int from = 0;
+            for (int i = 0; i < disp.size() - 1; i++) {
+                if (disp[i] == 'f' && disp[i + 1] != 'f') {
+                    from = i;
+                    break;
+                }
+            }
+            string temp = "";
+            for(int i = from; i < disp.size(); i++) {
+                temp += disp[i];
+            }
+            int size = 4 - temp.size();
+            while (size--) {
+                res += 'f';
+            }
+            res += temp;
+        } else {
 
+            int bits = 3 - disp.size();
+            while (bits > 0) {
+                res += '0';
+                bits--;
+            }
+            res += disp;
+        }
         return res;
     }
 };

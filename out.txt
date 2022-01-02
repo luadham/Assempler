@@ -1,19 +1,41 @@
-1000 first stl retadr,x 17c02f
-1003 cloop +jsub rdrec 4b101026
-1007 - $lda zero 370102f
-100b - comp #zero 292021
-100e - &jeq zero 32201e
-1011 - &jsub zero 48201b
-1014 - $j retadr 3f301032
-1018 - +sta buffer f101bed
-101c - lda @three 2200d
-101f - +sta length f101bea
-1023 - jsub zero 4b2009
-1026 rdrec lda three 32003
-1029 - tio - f8
-102a - clear - B400
-102c three word 3 3
-102f zero word 0 0
-1032 retadr resw 1000 32000
-1bea length resw 1 1
-1bed buffer lda adham 1bed buffer lda adham 
+1000 copy start 1000
+1000 first stl retadr,x
+1003 cloop +jsub rdrec
+1007 - $lda zero
+100b - comp #zero
+100e - &jeq zero
+1011 - &jsub zero
+1014 - $j retadr
+1018 - +sta buffer
+101c - lda @three
+101f - +sta length
+1023 - jsub zero
+1026 rdrec lda three
+1029 - tio -
+102a - clear -
+102c three word 3
+102f zero word 0
+1032 retadr resw 1000
+1bea length resw 1
+1bed buffer lda zero
+1bf0 adham word 1
+1bf3 - end -
+
+17c02f
+4b101026
+370102f
+292021
+32201e
+48201b
+3f301032
+f101bed
+2200d
+f101bea
+4b2009
+32003
+f8
+B400
+3
+0
+32f43f
+1

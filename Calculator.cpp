@@ -8,9 +8,9 @@ Calculator::Calculator() {
     initHexChar();
 }
 
-int Calculator::fromHexToDecimal(string hex) {
-    int res = 0;
-    int power = hex.size() - 1;
+unsigned int Calculator::fromHexToDecimal(string hex) {
+    unsigned int res = 0;
+    unsigned int power = hex.size() - 1;
     for (int i = 0; i < hex.size(); i++) {
         if (hex[i] >= 'a' && hex[i] <= 'f') {
             res += (int) (pow(HEX_BASE, power) * hexChar[hex[i]]);

@@ -33,7 +33,7 @@ public:
     /*
      * convert from hex to decimal
      */
-    int fromHexToDecimal(string hex);
+    unsigned int fromHexToDecimal(string hex);
     /*
      * Convert from decimal to hex
      */

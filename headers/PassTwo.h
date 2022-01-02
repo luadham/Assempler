@@ -282,10 +282,13 @@ public:
             cout << "Please Check Out file path" << endl;
             return;
         }
-        for (int i = 1; i < symbolTable.size() - 1; i++) {
+        for (int i = 0; i < symbolTable.size(); i++) {
             file << symbolTable[i].locationLine << " " << symbolTable[i].codeLine.label << " ";
-            file << symbolTable[i].codeLine.instruction.name << " " << symbolTable[i].codeLine.operand << " ";
-            file << objCodes[i - 1] << endl;
+            file << symbolTable[i].codeLine.instruction.name << " " << symbolTable[i].codeLine.operand << endl;
+        }
+        file << endl;
+        for (int i = 0; i < objCodes.size(); i++) {
+            file << objCodes[i] << endl;
         }
         file.close();
     }
