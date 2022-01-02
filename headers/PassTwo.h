@@ -208,8 +208,10 @@ private:
      * @return new opCode
      */
     string getOpCode(string oldOpCode, string operand) {
+        string s = "";
+        if (oldOpCode[0] == '0') s += '0';
         int opCode = addressingMode(operand) + calculator.fromHexToDecimal(oldOpCode);
-        return calculator.fromDecToHex(opCode);
+        return s + calculator.fromDecToHex(opCode);
     }
 
 
