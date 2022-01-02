@@ -112,14 +112,40 @@ private:
         cout << "Done!" << endl;
     }
 
+    void printHtRec() {
+        for (auto i : htRec) {
+            cout << i << endl;
+        }
+    }
     void generateHTERec() {
         // cout << "Adham" << symbolTable[0].locationLine << endl;
-        int progLen = calculator.fromHexToDecimal(symbolTable[symbolTable.size() - 1].locationLine) -
-                      calculator.fromHexToDecimal(symbolTable[0].locationLine) + 1;
-        htRec.push_back(getHRec(symbolTable[0].codeLine.instruction.name, calculator.fromDecToHex(progLen)));
+        int startAddress = calculator.fromHexToDecimal(symbolTable[0].locationLine);
+        int endAddress = calculator.fromHexToDecimal(symbolTable[symbolTable.size() - 1].locationLine);
+        string length = calculator.fromDecToHex(endAddress - startAddress + 1);
+        string prog_name = symbolTable[0].codeLine.label;
+        htRec.push_back(getHRec(prog_name, length));
+        int cnt = 0;
+        string instruction = "", start = objCodes[0].location;
+        for (int i = 0; i < objCodes.size(); i++) {
+            if (cnt + objCodes[i].objCode.size() <= 60) {
+                instruction += objCodes[i].objCode;
+                cnt += objCodes[i].objCode.size();
+            } else {
+                string len = calculator.fromDecToHex(cnt / 2);
+                htRec.push_back(getTRec(start, len, instruction));
+                start = objCodes[i].location;
+                i--;
+                instruction = "";
+                cnt = 0;
+            }
+            if (i == objCodes.size() - 1) {
+                string len = calculator.fromDecToHex(cnt / 2);
+                htRec.push_back(getTRec(start, len, instruction));
+            }
+            cout << i << endl;
+        }
         htRec.push_back(getERec(symbolTable[0].locationLine));
-        cout << htRec[0] << endl;
-        cout << htRec[1] << endl;
+        printHtRec();
     }
 
     string getHRec(string prog_name, string prog_len) {
@@ -138,6 +164,26 @@ private:
         while (size--) res += "0";
         res += start;
         return res;
+    }
+
+    string getTRec(string start, string len, string instructions) {
+        string res = "T";
+        int startSize = 6 - start.size();
+        while (startSize--) res += "0";
+        res += start;
+        int lenSize = 2 - len.size();
+        while (lenSize--) res += "0";
+        res += len;
+        res += instructions;
+        return res;
+    }
+
+    string getMRec(string adress) {
+        string res = "";
+        int size = 6 - adress.size();
+        while (size--) res += '0';
+        res += adress;
+        return "M" + res + "05";
     }
     /*
      * Get Format two Obj code
