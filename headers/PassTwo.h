@@ -20,6 +20,8 @@
 
 class PassTwo {
 private:
+
+
     vector<Line> input;
     vector<SymbolTableLine> symbolTable;
     Calculator calculator;
@@ -27,6 +29,7 @@ private:
     vector<string> htRec;
     const string outFile = "../out.txt";
     const string htmeFile = "../htme.txt";
+    string base;
     /*
      * Get Operand Location From symbol table
      */
@@ -240,8 +243,7 @@ private:
         string _obCode = getOpCode(opCode, operand);
         string validOperand = getRestOfString(operand);
         string address = getOperandLocation(validOperand);
-        // TODO: base = 1 must change
-        return formatSix.generateObjCode(_obCode, x, address, "1");
+        return formatSix.generateObjCode(_obCode, x, address, getOperandLocation(base));
     }
 
     /*
@@ -334,7 +336,7 @@ private:
     }
 
 public:
-    PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable);
+    PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable, string base);
 
     /*
      * check n i

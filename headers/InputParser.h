@@ -16,6 +16,7 @@ private:
     Calculator calclator;
     vector<Instruction> instructions;
     vector<Line> inputLines;
+    string base;
     void error(string name, int line) {
         cerr << "Error in Line < " << line << " > " << name << endl;
     }
@@ -98,6 +99,8 @@ private:
             } else if (line.instruction.name == "end") {
                 inputLines.push_back(line);
                 continue;
+            } else if (line.instruction.name == "base") {
+                base = line.label;
             }
             if (validLine(line))
                 inputLines.push_back(line);
@@ -114,6 +117,9 @@ public:
     InputParser(vector<Instruction> instructions);
     vector<Line> getLines();
     int getStartLocation();
+    string getBase() {
+        return this->base;
+    }
 
 };
 

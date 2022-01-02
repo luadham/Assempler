@@ -1,11 +1,12 @@
 //
-// Created by adham on ٣١‏/١٢‏/٢٠٢١.
+// Created by adham
 //
 
 #include "headers/PassTwo.h"
 
-PassTwo::PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable) {
+PassTwo::PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable, string base) {
     this->input = input;
+    this->base = base;
     this->symbolTable = symbolTable;
     generateObjCodes();
     writeOut_objCode();
