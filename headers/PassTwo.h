@@ -78,7 +78,7 @@ private:
                 objCodeLine.isModified = false;
                 objCodeLine.location = symbolTable[i].locationLine;
                 objCodes.push_back(objCodeLine);
-            } 
+            }
             else if (instruction == "resw" || instruction == "resb") continue;
             else if (instruction[0] == '&') {
                 // Format 5
@@ -152,10 +152,19 @@ private:
                 string len = calculator.fromDecToHex(cnt / 2);
                 htRec.push_back(getTRec(start, len, instruction));
             }
-            cout << i << endl;
         }
+        generateMRec();
         htRec.push_back(getERec(symbolTable[0].locationLine));
         printHtRec();
+
+    }
+
+    void generateMRec() {
+        for (int i = 0; i < objCodes.size(); i++) {
+            if (objCodes[i].isModified) {
+                htRec.push_back(getMRec(objCodes[i].location));
+            }
+        }
     }
 
     string getHRec(string prog_name, string prog_len) {
