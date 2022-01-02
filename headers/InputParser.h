@@ -92,6 +92,10 @@ private:
             line.instruction = getInstructionData(word);
             file >> word;
             line.operand = convertToLower(word);
+            if (line.instruction.name[0] == '&' && (line.operand[0] == '#' || line.operand[0] == '@')) {
+                cout << "Format 5 neither supports immediate nor indirect addressing modes, Please Try Again ;D" << endl;
+                return;
+            }
             if (line.instruction.name == "start") {
                 this->startProgram = calclator.fromHexToDecimal(line.operand);
                 inputLines.push_back(line);
