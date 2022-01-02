@@ -65,11 +65,21 @@ private:
             }
             //cout << operand << endl;
             if (instruction == "word") {
+                string res = "";
+                int size = 6 - operand.size();
+                while (size--) res += '0';
+                res += operand;
+                objCodeLine.objCode = res;
+                objCodeLine.isModified = false;
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodes.push_back(objCodeLine);
+            } else if (instruction == "byte") {
                 objCodeLine.objCode = operand;
                 objCodeLine.isModified = false;
                 objCodeLine.location = symbolTable[i].locationLine;
                 objCodes.push_back(objCodeLine);
-            } else if (instruction == "resw" || instruction == "resb") continue;
+            } 
+            else if (instruction == "resw" || instruction == "resb") continue;
             else if (instruction[0] == '&') {
                 // Format 5
                 objCodeLine.isModified = false;
