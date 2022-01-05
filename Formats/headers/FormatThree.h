@@ -38,8 +38,9 @@ public:
                 temp += disp[i];
             }
             int size = 4 - temp.size();
-            while (size--) {
+            while (size > 0) {
                 res += 'f';
+                size--;
             }
             res += temp;
         } else {

@@ -30,6 +30,9 @@ private:
     const string outFile = "../out.txt";
     const string htmeFile = "../htme.txt";
     string base;
+    string def, ref;
+    int startLocation;
+
     /*
      * Get Operand Location From symbol table
      */
@@ -58,9 +61,17 @@ private:
             string opCode = symbolTable[i].codeLine.instruction.opCode;
             string nextPc = symbolTable[i + 1].locationLine;
             string instruction = symbolTable[i].codeLine.instruction.name;
+            string label = symbolTable[i].codeLine.label;
             ObjCode objCodeLine;
             //cout << instruction << endl;
-            if (isIndexed(operand)) {
+            if (operand[0] != '-' && label[0] != '-' && operand == label) {
+                objCodeLine.location = symbolTable[i].locationLine;
+                objCodeLine.isModified = false;
+                objCodeLine.objCode = getLitralValue(operand);
+                objCodes.push_back(objCodeLine);
+                continue;
+            }
+            if (isIndexed(operand) && operand[0] != '=') {
                 string i = "", temp = "";
                 splitStr(operand, temp, i);
                 operand = temp;
@@ -81,8 +92,7 @@ private:
                 objCodeLine.isModified = false;
                 objCodeLine.location = symbolTable[i].locationLine;
                 objCodes.push_back(objCodeLine);
-            }
-            else if (instruction == "resw" || instruction == "resb") continue;
+            } else if (instruction == "resw" || instruction == "resb") continue;
             else if (instruction[0] == '&') {
                 // Format 5
                 objCodeLine.isModified = false;
@@ -122,14 +132,49 @@ private:
                 objCodes.push_back(objCodeLine);
             }
         }
-        cout << "Done!" << endl;
+        cout << "Done :v" << endl;
     }
 
     void printHtRec() {
-        for (auto i : htRec) {
+        for (auto i: htRec) {
             cout << i << endl;
         }
     }
+
+    string convertFromCharToNumber(string chars) {
+        string res = "";
+        for (int i = 0; i < chars.size(); i++) {
+            res += calculator.fromDecToHex(chars[i]);
+        }
+        return res;
+    }
+
+    string getLitrStr(string litral) {
+        string res = "";
+        for (int i = 3; i <= litral.size() - 2; i++) {
+            res += litral[i];
+        }
+        return res;
+    }
+
+    string getLitralValue(string litral) {
+        char type = litral[1];
+        string res = getLitrStr(litral);
+        switch (type) {
+            case 'C':
+                res = convertFromCharToNumber(res);
+                break;
+            case 'X':
+                break;
+            case 'D':
+                res = calculator.fromDecimalToBinary(calculator.to_int(res));
+                break;
+            default:
+                cout << "Not Valid Char for litral" << endl;
+        }
+        return res;
+    }
+
     /*
      * Generate HTME Record
      */
@@ -139,7 +184,13 @@ private:
         int endAddress = calculator.fromHexToDecimal(symbolTable[symbolTable.size() - 1].locationLine);
         string length = calculator.fromDecToHex(endAddress - startAddress + 1);
         string prog_name = symbolTable[0].codeLine.label;
-        htRec.push_back(getHRec(prog_name, length));
+        htRec.push_back(getHRec(prog_name ,length));
+        bool refFlag = ref != "";
+        bool defFlag = def != "";
+
+        if (defFlag) htRec.push_back(getDefRec(def));
+        if (refFlag) htRec.push_back(getRef(ref));
+
         int cnt = 0;
         string instruction = "", start = objCodes[0].location;
         for (int i = 0; i < objCodes.size(); i++) {
@@ -162,9 +213,50 @@ private:
         generateMRec();
         htRec.push_back(getERec(symbolTable[0].locationLine));
         printHtRec();
-
     }
 
+    vector<string> spliter(string str) {
+        vector<string> v;
+        stringstream ss(str);
+        while (ss.good()) {
+            string substr;
+            getline(ss, substr, ',');
+            v.push_back(substr);
+        }
+        return v;
+    }
+    string getDefRec(string def) {
+        string res = "";
+        vector<string> v = spliter(def);
+        vector<string> locations;
+        for (int i = 0; i < v.size(); i++) {
+            locations.push_back(getOperandLocation(v[i]));
+        }
+        extendSize(locations);
+        for (int i = 0; i < v.size(); i++) {
+            res += v[i];
+            res += locations[i];
+        }
+        return "D" + res;
+    }
+    void extendSize(vector<string> &vec) {
+        for (int i = 0; i < vec.size(); i++) {
+            int size = 6 - vec[i].size();
+            while (size > 0) {
+                vec[i] += " ";
+                size--;
+            }
+        }
+    }
+    string getRef(string ref) {
+        string res = "";
+        vector<string> v = spliter(ref);
+        extendSize(v);
+        for (int i = 0; i < v.size(); i++) {
+            res += v[i];
+        }
+        return "R" + res;
+    }
     /*
      * Generate Modification Record
      */
@@ -182,13 +274,18 @@ private:
     string getHRec(string prog_name, string prog_len) {
         string res = "H";
         res += prog_name;
+        string start = calculator.fromDecToHex(startLocation);
+        int startSize = 6 - start.size();
         int nameSize = 6 - prog_name.size();
         int lenSize = 6 - prog_len.size();
         while (nameSize--) res += " ";
+        while (startSize--) res += "0";
+        res += start;
         while (lenSize--) res += "0";
         res += prog_len;
         return res;
     }
+
     /*
      * Return E Record
      */
@@ -225,6 +322,7 @@ private:
         res += adress;
         return "M" + res + "05";
     }
+
     /*
      * Get Format two Obj code
      * @return objcode
@@ -281,7 +379,7 @@ private:
     string format_three(string operand, int x, string opCode, string pc) {
         FormatThree formatThree;
         string _opCode = getOpCode(opCode, operand);
-        string validOperand = getRestOfString(operand);
+        string validOperand = (operand[0] == '=') ? operand : getRestOfString(operand);
         int b = x;
         int p = !b;
         return formatThree.generateObjCode(_opCode, x, b, p,
@@ -336,7 +434,7 @@ private:
     }
 
 public:
-    PassTwo(vector<Line> input, vector<SymbolTableLine> symbolTable, string base);
+    PassTwo(int startLocation, vector<Line> input, vector<SymbolTableLine> symbolTable, string base, string def, string ref);
 
     /*
      * check n i
@@ -403,9 +501,11 @@ public:
             cout << "Please Check Out file path" << endl;
             return;
         }
-        for (int i = 0; i < objCodes.size(); i++) {
+
+        for (int i = 0; i < htRec.size(); i++) {
             file << htRec[i] << endl;
         }
+
         file.close();
     }
 

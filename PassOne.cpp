@@ -6,7 +6,7 @@
 
 PassOne::PassOne(vector<Line> input, int startLocation) {
     outFile = "../out.txt";
-    symbolTableFile = "symbolTable.txt";
+    symbolTableFile = "../symbolTable.txt";
     locationCounter = startLocation;
     this->lines = input;
     generateLocationCounter();
@@ -71,6 +71,10 @@ void PassOne::writeOut() {
 void PassOne::generateSymbolTable() {
     ofstream file;
     file.open(symbolTableFile);
+    if (file.fail()) {
+        cout << "Please Check Symbol Table File Path" << endl;
+        return;
+    }
     cout << "< Symbol Table >\n";
     cout << "-----------------------\n";
     cout << "Loc Counter\tVariable\n";

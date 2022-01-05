@@ -1,9 +1,10 @@
 //
-// Created by adham on ٣٠‏/١٢‏/٢٠٢١.
+// Created by adham
 //
 
 #ifndef SYSPROJECT_INPUTPARSER_H
 #define SYSPROJECT_INPUTPARSER_H
+
 #include "Instruction.h"
 #include "Line.h"
 #include "Calculator.h"
@@ -16,7 +17,11 @@ private:
     Calculator calclator;
     vector<Instruction> instructions;
     vector<Line> inputLines;
+    queue<Line> litral;
     string base;
+    string definition;
+    string ref;
+
     void error(string name, int line) {
         cerr << "Error in Line < " << line << " > " << name << endl;
     }
@@ -37,9 +42,11 @@ private:
         }
         return false;
     }
+
     bool isChar(char c) {
         return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
     }
+
     string getRestOfString(string str) {
         if (isChar(str[0])) return str;
         string res = "";
@@ -47,6 +54,7 @@ private:
             res += str[i];
         return res;
     }
+
     Instruction getInstructionData(string instructionName) {
         Instruction instruction;
         instructionName = convertToLower(instructionName);
@@ -91,12 +99,43 @@ private:
             file >> word;
             line.instruction = getInstructionData(word);
             file >> word;
-            line.operand = convertToLower(word);
+            if (line.instruction.name == "extdef" || line.instruction.name == "EXTDEF") {
+                definition = word;
+                continue;
+            } else if (line.instruction.name == "extref" || line.instruction.name == "EXTREF") {
+                ref = word;
+                continue;
+            }
+            line.operand = (word[0] == '=')? word : convertToLower(word);
+
+            if (line.instruction.name == "ltorg") {
+                while (!litral.empty()) {
+                    inputLines.push_back(litral.front());
+                    litral.pop();
+                }
+                continue;
+            }
+            if (line.instruction.name == "end") {
+                while (!litral.empty()) {
+                    inputLines.push_back(litral.front());
+                    litral.pop();
+                }
+                continue;
+            }
             if (line.instruction.name[0] == '&' && (line.operand[0] == '#' || line.operand[0] == '@')) {
-                cout << "Format 5 neither supports immediate nor indirect addressing modes, Please Try Again ;D" << endl;
+                cout << "Format 5 neither supports immediate nor indirect addressing modes, Please Try Again ;D"
+                     << endl;
                 return;
             }
-            if (line.instruction.name == "start") {
+            if (line.operand[0] == '=') {
+                Line litLine;
+                litLine.label = line.operand;
+                litLine.instruction = line.instruction;
+                litLine.operand = line.operand;
+                litral.push(litLine);
+                inputLines.push_back(line);
+                continue;
+            } else if (line.instruction.name == "start") {
                 this->startProgram = calclator.fromHexToDecimal(line.operand);
                 inputLines.push_back(line);
                 continue;
@@ -105,8 +144,7 @@ private:
                 continue;
             } else if (line.instruction.name == "base") {
                 base = line.label;
-            }
-            if (validLine(line))
+            } else if (validLine(line))
                 inputLines.push_back(line);
             else {
                 error("Check Line Again !", lineNumber);
@@ -119,11 +157,28 @@ private:
 
 public:
     InputParser(vector<Instruction> instructions);
+
     vector<Line> getLines();
+
     int getStartLocation();
+
     string getBase() {
         return this->base;
     }
+
+    string getRef() {
+        return this->ref;
+    }
+
+    string getDef() {
+        return this->definition;
+    }
+    void check() {
+        for (auto i : inputLines) {
+            cout << i.label << " " << i.instruction.name << " " << i.operand << endl;
+        }
+    }
+
 
 };
 

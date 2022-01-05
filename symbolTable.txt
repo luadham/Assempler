@@ -1,0 +1,19 @@
+Loc Counter	Variable
+1000		copy
+1000		first
+1003		cloop
+1007		endfile
+100e		=C'EOF'
+1011		test1
+1014		test2
+1017		test3
+101a		test4
+102b		aast
+1035		rdrec
+103b		three
+103e		zero
+1041		retadr
+1bf9		length
+1bfc		buffer
+1bff		adham
+1c02		=C'AST'

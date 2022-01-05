@@ -1,5 +1,5 @@
 //
-// Created by adham on ٣١‏/١٢‏/٢٠٢١.
+// Created by adham
 //
 
 #ifndef SYSPROJECT_PASSONE_H
@@ -12,7 +12,7 @@
 class PassOne {
 private:
     string outFile;
-    string symbolTableFile;
+    string symbolTableFile = "../symbolTable.txt";
     int locationCounter;
     bool validCode;
     vector<SymbolTableLine> symbolTable;

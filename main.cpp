@@ -10,6 +10,6 @@ int main() {
     SicXeInstructions instructions;
     InputParser inputParser(instructions.getInstructions());
     PassOne passOne(inputParser.getLines(), inputParser.getStartLocation());
-    PassTwo passTwo(inputParser.getLines(), passOne.getSymbolTable(), inputParser.getBase());
+    PassTwo passTwo(inputParser.getStartLocation() ,inputParser.getLines(), passOne.getSymbolTable(), inputParser.getBase(), inputParser.getDef(), inputParser.getRef());
     return 0;
 }
